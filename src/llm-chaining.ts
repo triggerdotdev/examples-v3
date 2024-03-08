@@ -4,7 +4,7 @@
 export const stripePlanChanged = stripe.task({
   id: "subscription-plan-changed",
   on: "customer.subscription.updated",
-  //<>
+  //</>
   run: async ({ payload, context, prepared }) => {
     const user = await db.users.find({ stripeId: payload.customer });
     const planId = getNewPlanId(payload);
@@ -18,7 +18,7 @@ export const stripePlanChanged = stripe.task({
         subject: "Your plan has changed",
         html: planEmail(payload),
       });
-      //<>
+      //</>
       //<>  and stream responses to your client.
       if (isPlanUpgraded(user.planId, planId)) {
         await slack.chat.postMessage({
@@ -26,7 +26,7 @@ export const stripePlanChanged = stripe.task({
           channel: "subscriptions",
         });
       }
-      //<>
+      //</>
     }
   },
 });
