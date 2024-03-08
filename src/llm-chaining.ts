@@ -1,4 +1,6 @@
-// testing UI functionality, not a real file
+// hide-code
+const client = new TriggerClient({ id: "api-reference" });
+// end-hide-code
 
 //<> Chain together calls to LLMs or other AI APIs reliably.
 export const stripePlanChanged = stripe.task({
@@ -19,7 +21,7 @@ export const stripePlanChanged = stripe.task({
         html: planEmail(payload),
       });
       //</>
-      //<>  and stream responses to your client.
+      //<> and stream responses to your client.
       if (isPlanUpgraded(user.planId, planId)) {
         await slack.chat.postMessage({
           text: `Plan upgraded for ${user.email} to ${planId}`,
@@ -30,3 +32,7 @@ export const stripePlanChanged = stripe.task({
     }
   },
 });
+
+// hide-code
+const client = new TriggerClient({ id: "api-reference" });
+// end-hide-code
